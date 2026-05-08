@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools", "numpy>=1.21"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dvipy"
+version = "0.1.0"
+description = "Filter Method for 1D Schrödinger Equation"
+dependencies = [
+    "numpy",
+    "matplotlib",
+]
+
+[tool.setuptools]
+packages = ["dvipy"]
