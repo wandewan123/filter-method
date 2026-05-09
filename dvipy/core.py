@@ -5,7 +5,8 @@ except ImportError:
     solver_lib = None
 
 def tridag(a, b, c, r):
-    return solver_lib.solver_module.tridag(a, b, c, len(r), r)
+    n = len(r)
+    return solver_lib.solver_module.tridag(a, b, c, r, n)
 
 def psi_eigen(dx, vpot, psi, energy):
     # n otomatis diurus f2py jika intent(in) diatur benar
