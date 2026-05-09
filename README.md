@@ -62,26 +62,6 @@ The tridiagonal systems are solved efficiently using the Thomas algorithm implem
 
 ---
 
-# Features
-
-- Fast Fortran backend
-- Python interface via NumPy/f2py
-- Iterative eigenvalue filtering
-- Tridiagonal solver implementation
-- Harmonic oscillator support
-- Custom potential functions
-- Lightweight scientific workflow
-- Colab-compatible
-
----
-
-# Project Structure
-
-```text
-dvipy/
-├── __init__.py
-├── core.py
-└── solver_lib.so
 
 src/
 └── solfer.f90
