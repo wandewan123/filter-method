@@ -28,13 +28,13 @@ The approach is particularly attractive for:
 
 For a one-dimensional system, the Hamiltonian operator is written as
 
-:contentReference[oaicite:1]{index=1}
+$\hat{H} = -\frac{\hbar^{2}}{2m}\frac{\partial^{2}}{\partia x^{2}} + V(x)$
 
 Using finite-difference discretization, the problem becomes a tridiagonal system.
 
 The filtering iteration employed in this work is based on repeatedly solving
 
-:contentReference[oaicite:2]{index=2}
+$\left(\hat{H} - E_{n}^{k}\right)\phi_{n}^{k+1}(x) = \phi_{n}^{k}(x)$
 
 followed by normalization and energy updates until convergence is achieved.
 
