@@ -65,10 +65,9 @@ The tridiagonal systems are solved efficiently using the Thomas algorithm implem
 # References
 
 This project is based on research involving iterative filtering methods for quantum eigenvalue problems.
-If you use this library in academic work, please cite the corresponding research publication:
+If you use this library in academic work, please cite the corresponding research publication.
 
-"Filter method without boundary-value condition for simultaneous calculation of eigenfunction and eigenvalue of a stationary Schrödinger equation on a grid."
-DOI:10.1103/PhysRevE.96.033302
+[📄 Filter method without boundary-value condition for simultaneous calculation of eigenfunction and eigenvalue of a stationary Schrödinger equation on a grid](https://doi.org/10.1103/PhysRevE.96.033302)
 
 ---
 
