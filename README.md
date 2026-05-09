@@ -10,7 +10,7 @@ This project provides a lightweight scientific-computing framework for solving q
 
 The library is designed to solve the stationary Schrödinger equation
 
-:contentReference[oaicite:0]{index=0}
+$\hat{H}\phi = E\phi$
 
 where the Hamiltonian operator is discretized using finite differences.  
 Instead of performing direct matrix diagonalization, this method applies an iterative filtering process to converge toward the desired eigenstate.
