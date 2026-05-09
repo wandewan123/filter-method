@@ -1,6 +1,6 @@
 import numpy as np
 try:
-    import solver_lib
+    from . import solver_lib
 except ImportError:
     solver_lib = None
 
