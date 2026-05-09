@@ -28,7 +28,7 @@ The approach is particularly attractive for:
 
 For a one-dimensional system, the Hamiltonian operator is written as
 
-$\hat{H} = -\frac{\hbar^{2}}{2m}\frac{\partial^{2}}{\partia x^{2}} + V(x)$
+$\hat{H} = -\frac{\hbar^{2}}{2m}\frac{\partial^{2}}{\partial x^{2}} + V(x)$
 
 Using finite-difference discretization, the problem becomes a tridiagonal system.
 
@@ -62,6 +62,15 @@ The tridiagonal systems are solved efficiently using the Thomas algorithm implem
 
 ---
 
+# References
 
-src/
-└── solfer.f90
+This project is based on research involving iterative filtering methods for quantum eigenvalue problems.
+If you use this library in academic work, please cite the corresponding research publication:
+"Filter method without boundary-value condition for simultaneous calculation of eigenfunction and eigenvalue of a stationary Schrödinger equation on a grid."
+DOI:10.1103/PhysRevE.96.033302
+
+---
+
+# License
+
+MIT License
