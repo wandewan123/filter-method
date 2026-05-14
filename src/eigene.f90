@@ -32,6 +32,6 @@ subroutine eigene(dx, vpot, psi, n, stencil, energy_out)
 
     deallocate(H_psi, psi_Hpsi)
 
-end subroutine eigene_mod
+end subroutine eigene
 
-end module eigene
+end module eigene_mod
