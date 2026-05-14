@@ -11,11 +11,11 @@ contains
     real(8), intent(in)    :: guessE, xi, tol
     real(8), intent(in)    :: psi0(:)
     integer, intent(in)    :: stencil, maxiter
-    
-    real(8), intent(in)    :: energi, phi(size(x))
+    real(8), intent(out)   :: energi, phi(size(x))
 
-    integer                 ::
-    real(8)                 ::
+    integer :: n, iterasi, i
+    real(8) :: E_curr, E_next, dx2, residual, norm_res
+    real(8) :: r(n), r_sq(n), integral_residu
     real(8), allocatable    ::
     
 
