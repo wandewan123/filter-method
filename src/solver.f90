@@ -1,4 +1,4 @@
-module solver_module
+module solver
     implicit none
 contains
 
@@ -140,4 +140,4 @@ contains
 
     end subroutine septadag
 
-end module solver_module
+end module solver
