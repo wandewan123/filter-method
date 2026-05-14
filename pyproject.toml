@@ -1,5 +1,6 @@
 [build-system]
-requires = ["setuptools", "numpy>=1.21"]
+# Tambahkan "wheel" dan batasi NumPy harus di bawah versi 2.0
+requires = ["setuptools", "wheel", "numpy<2.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,7 +8,7 @@ name = "dvipy"
 version = "0.1.0"
 description = "Filter Method for 1D Schrödinger Equation"
 dependencies = [
-    "numpy",
+    "numpy<2.0",  # Samakan juga di sini agar tidak bentrok
     "matplotlib",
 ]
 
