@@ -1,4 +1,4 @@
-module utils_bc
+module utils
     implicit none
 contains
 
@@ -14,4 +14,4 @@ contains
         end if
     end function get_phi
 
-end module utils_bc
+end module utils
