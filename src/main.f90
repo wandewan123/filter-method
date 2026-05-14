@@ -33,30 +33,30 @@ subroutine main(x, vpot, guessE, psi0, xi, stencil, tol, maxiter, energy_final, 
         select case(stencil)
         case(3)
             call eigenf2(dx, vpot, psi_curr, n, E_curr, phi)
-            call eigene(dx, vpot, psi_curr, n, stencil, energy_out)
-            call matrix2(dx, vpot, psi_curr, n, Hphi)
+            call eigene(dx, vpot, phi, n, stencil, E_next)
+            call matrix2(dx, vpot, phi, n, Hphi)
 
         case(5)
             call eigenf4(dx, vpot, psi_curr, n, E_curr, phi)
-            call eigene(dx, vpot, psi_curr, n, stencil, energy_out)
-            call matrix4(dx, vpot, psi_curr, n, Hphi)
+            call eigene(dx, vpot, phi, n, stencil, E_next)
+            call matrix4(dx, vpot, phi, n, Hphi)
 
         case(7)
             call eigenf6(dx, vpot, psi_curr, n, E_curr, phi)
-            call eigene(dx, vpot, psi_curr, n, stencil, energy_out)
-            call matrix6(dx, vpot, psi_curr, n, Hphi)
+            call eigene(dx, vpot, phi, n, stencil, E_next)
+            call matrix6(dx, vpot, phi, n, Hphi)
         end select
 
-        r = Hphi - E_next * phi
-        residual = sqrt(sum(r**2) * dx) / abs(E_next)
+        r = Hphi - (E_next * phi)
+        residual = sqrt(sum(r ** 2) * dx) / abs(E_next)
 
-        E_curr   = (1.0d0 - xi) * E_next + xi * E_curr
+        E_curr   = ((1.0d0 - xi) * E_next) + (xi * E_curr)
         psi_curr = phi
 
     end do
 
-    energy_final = E_curr
-    phi_final    = psi_curr
+    energy_final = E_next
+    phi_final    = phi
 
     deallocate(psi_curr, phi, Hphi, r)
 
