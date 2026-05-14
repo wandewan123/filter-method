@@ -1,3 +1,25 @@
+module main_filter
+    use matrix, only    : tridag, pentadag, septadag
+    use eigenf, only    : eigenf2, eigenf4, eigenf6
+    use eigene, only    : eigene2, eigene4, eigene6
+    implicit none
+
+contains
+
+    subroutine main(x, vpot, guessE, psi0, xi, stencil, tol, maxiter, energy, phi)
+    real(8), intent(in)    :: x(:), vpot(:)
+    real(8), intent(in)    :: guessE, xi, tol
+    real(8), intent(in)    :: psi0(:)
+    integer, intent(in)    :: stencil, maxiter
+    
+    real(8), intent(in)    :: energi, phi(size(x))
+
+    integer                 ::
+    real(8)                 ::
+    real(8), allocatable    ::
+    
+
+    
     subroutine psi_eigen_2(dx, vpot, psi_in, energy, n, psi_out)
 
     !+──────────────────────────────────────────────────────────────────────────+
