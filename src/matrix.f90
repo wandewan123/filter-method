@@ -1,5 +1,5 @@
 module matrix
-    use utils_bc, only: get_phi
+    use utils, only: get_phi
     implicit none
 
 contains
