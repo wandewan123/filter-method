@@ -1,5 +1,6 @@
 module eigenf
-  use solver, only  : tridag, pentadag, septadag
+  use solver, only   : tridag, pentadag, septadag
+  use utils, only    : normalize
   implicit none
 
 contains
@@ -30,15 +31,8 @@ contains
         end do
 
         call tridag(alfa, beta, alfa, psi, n, phi)
-    
-        integral = 0.0d0
-        do i = 1, n-1
-            integral = integral + 0.5d0 * dx * (phi(i)**2 + phi(i+1)**2)
-        end do
-        
-        if (integral > 0.0d0) then
-            phi = phi / sqrt(integral)
-        end if
+
+        phi = normalize(phi, dx)
 
     end subroutine eigenf2
 
@@ -67,15 +61,8 @@ contains
         end do
 
         call pentadag(a, b, c, d, e, psi, n, phi)
-    
-        integral = 0.0d0
-        do i = 1, n-1
-            integral = integral + 0.5d0 * dx * (phi(i)**2 + phi(i+1)**2)
-        end do
-        
-        if (integral > 0.0d0) then
-            phi = phi / sqrt(integral)
-        end if
+
+        phi = normalize(phi, dx)
 
     end subroutine eigenf4
 
@@ -107,14 +94,7 @@ contains
         end do
 
         call septadag(a3, a2, a1, d0, c1, c2, c3, psi, n, phi)
-    
-        integral = 0.0d0
-        do i = 1, n-1
-            integral = integral + 0.5d0 * dx * (phi(i)**2 + phi(i+1)**2)
-        end do
-        
-        if (integral > 0.0d0) then
-            phi = phi / sqrt(integral)
-        end if
 
-    end subroutine eigenf6
+        phi = normalize(phi, dx)
+
+    end subroutine eigenf
