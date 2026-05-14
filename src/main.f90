@@ -1,5 +1,4 @@
 module main_filter
-    use solver, only    : tridag, pentadag, septadag
     use eigenf, only    : eigenf2, eigenf4, eigenf6
     use eigene, only    : eigene2, eigene4, eigene6
     use matrix, only    : matrix2, matrix4, matrix6
