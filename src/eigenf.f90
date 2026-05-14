@@ -97,4 +97,6 @@ contains
 
         phi = normalize(phi, dx)
 
-    end subroutine eigenf
+    end subroutine eigenf6
+
+end 
