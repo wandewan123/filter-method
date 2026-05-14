@@ -34,17 +34,17 @@ subroutine main(x, vpot, guessE, psi0, xi, stencil, tol, maxiter, energy_final, 
         case(3)
             call eigenf2(dx, vpot, psi_curr, n, E_curr, phi)
             call eigene2(dx, vpot, psi_curr, n, E_next)
-            call matrix2(Hphi)
+            call matrix2(dx, vpot, psi_curr, n, Hphi)
 
         case(5)
             call eigenf4(dx, vpot, psi_curr, n, E_curr, phi)
             call eigene4(dx, vpot, psi_curr, n, E_next)
-            call matrix4(Hphi)
+            call matrix4(dx, vpot, psi_curr, n, Hphi)
 
         case(7)
             call eigenf6(dx, vpot, psi_curr, n, E_curr, phi)
             call eigene6(dx, vpot, psi_curr, n, E_next)
-            call matrix6(Hphi)
+            call matrix6(dx, vpot, psi_curr, n, Hphi)
         end select
 
         r = Hphi - E_next * phi
