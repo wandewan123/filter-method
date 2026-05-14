@@ -14,7 +14,7 @@ def energi_eigen(dx, vpot, psi):
         dx, vpot, psi
     )
 
-def solve_full(x, vpot, initial_e, dx, xi=0.95, tol=1e-7):
-    return solver_lib.solver_module.main_filter(
-        x, vpot, initial_e, dx, xi, tol
+def solve_full(x, vpot, initial_e, psi0, stencil=3, xi=0.5, tol=1e-7, maxiter=1000):
+    return solver_lib.main_filter.main(
+        x, vpot, initial_e, psi0, xi, stencil, tol, maxiter
     )
