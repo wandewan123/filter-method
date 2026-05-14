@@ -16,13 +16,15 @@ contains
         integer, intent(in)  :: n
         real(8), intent(in)  :: dx, energy, vpot(n), psi(n)
         real(8), intent(out) :: phi(n)
-        
-        real(8) :: alfa(n), beta(n), dx2, integral
-        integer :: i
+
+        real(8)              :: dx2, integral
+        integer              :: i
+        real(8), allocatable :: alfa(:), beta(:)
+        allocate(alfa(n), beta(n))
         
         dx2 = dx * dx
-        
         alfa = -0.5d0 / dx2
+        
         do i = 1, n
             beta(i) = (1.0d0 / dx2) + vpot(i) - energy
         end do
