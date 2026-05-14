@@ -1,69 +1,66 @@
 module main_filter
-    use matrix, only    : tridag, pentadag, septadag
+    use solver, only    : tridag, pentadag, septadag
     use eigenf, only    : eigenf2, eigenf4, eigenf6
     use eigene, only    : eigene2, eigene4, eigene6
+    use matrix, only    : matrix2, matrix4, matrix6
     implicit none
 
 contains
 
-    subroutine main(x, vpot, guessE, psi0, xi, stencil, tol, maxiter, energy, phi)
-    real(8), intent(in)    :: x(:), vpot(:)
-    real(8), intent(in)    :: guessE, xi, tol
-    real(8), intent(in)    :: psi0(:)
-    integer, intent(in)    :: stencil, maxiter
-    real(8), intent(out)   :: energi, phi(size(x))
-
-    integer :: n, iterasi, i
-    real(8) :: E_curr, E_next, dx2, residual, norm_res
-    real(8) :: r(n), r_sq(n), integral_residu
-    real(8), allocatable    ::
+    subroutine main(x, vpot, guessE, psi0, xi, stencil, tol, maxiter, energy_final, phi_final)
+        real(8), intent(in)    :: x(:), vpot(:)
+        real(8), intent(in)    :: guessE, xi, tol
+        real(8), intent(in)    :: psi0(:)
+        integer, intent(in)    :: stencil, maxiter
+        real(8), intent(out)   :: energi, phi(size(x))
     
-
+        integer                 :: n, iterasi, i
+        real(8)                 :: E_curr, E_next, dx2, residual, norm_res
+        real(8)                 :: r(n), r_sq(n), integral_residu
+        real(8), allocatable    :: psi_curr(:), phi(:), Hphi(:)
     
-    subroutine psi_eigen_2(dx, vpot, psi_in, energy, n, psi_out)
-
-    !+──────────────────────────────────────────────────────────────────────────+
-    !| SUBROUTINE : PSI_EIGEN_2                                                       |
-    !| TUJUAN     : DIGUNAKAN UNTUK MENYELESAIKAN SISTEM MATRIKS BERBENTUK       |
-    !|              KOEFISIEN TRIDIAGONAL                                        |
-    !| INPUT      : a (low-diag), b (diag), c(up-diag), r(RHS), n(grid)
-    !| OUPUTS     : u(solution)
-    !+──────────────────────────────────────────────────────────────────────────+
-
-        ! Mendefinisikan tipe data dan arah variabel (intent)
-        integer, intent(in)  :: n
-        real(8), intent(in)  :: dx, energy, vpot(n), psi_in(n)
-        real(8), intent(out) :: psi_out(n)
+        n   = size(x)
+        dx2 = (x(2) - x(1)) ** 2
+    
+        allocate(psi_curr(n), phi(n), H_phi(n))
+    
+        psi_curr = psi0
+        E_curr   = guessE
+        iterasi  = 0
+        residual = 1.0d0
+    
+        do while (residual > tol)
+            iterasi = iterasi + 1
+    
+            select case(stencil)
+            case(3)
+                call eigenf2(dx, vpot, psi, n, E_curr, phi)
+                call eigene2(dx, vpot, psi, n, E_next)
+                call matrix2(Hphi)
+            case(5)
+                call eigenf4(dx, vpot, psi, n, E_curr, phi)
+                call eigene4(dx, vpot, psi, n, E_next)
+                call matrix4(Hphi)
+            case(7)
+                call eigenf6(dx, vpot, psi, n, E_curr, phi)
+                call eigene6(dx, vpot, psi, n, E_next)
+                call matrix6(Hphi)
+    
+            r        = Hphi - (E_next * phi)
+            residual = sqrt(sum(r ** 2) * dx) / abs(E_next)
+    
+            E_curr = ((1.0d0 - xi) * E_next) + (xi * E_current)
+            psi    = phi
         
-        ! Variabel lokal untuk perhitungan internal
-        real(8) :: alfa(n), beta(n), dx2, integral
-        integer :: i
-        dx2 = dx * dx
-        
-        ! 1. Mengisi array alfa dan beta (Logika Hamiltonia)
-        ! Di Fortran, operasi array bisa langsung (vektorisasi)
-        alfa = -0.5d0 / dx2
-        
-        do i = 1, n
-            beta(i) = (1.0d0 / dx2) + vpot(i) - energy
         end do
     
-        ! 2. Memanggil subroutine tridag yang sudah kita buat sebelumnya
-        ! Kita pakai alfa sebagai sub-diagonal dan super-diagonal
-        call tridag(alfa, beta, alfa, psi_in, n, psi_out)
-    
-        ! 3. Normalisasi menggunakan aturan trapesium
-        integral = 0.0d0
-        do i = 1, n-1
-            integral = integral + 0.5d0 * dx * (psi_out(i)**2 + psi_out(i+1)**2)
-        end do
+        energy_final = E_next
+        phi_final    = psi
+        deallocate(psi_curr, phi, H_phi)
         
-        ! Menghindari pembagian dengan nol jika terjadi error numerik
-        if (integral > 0.0d0) then
-            psi_out = psi_out / sqrt(integral)
-        end if
+    end subroutine main_filter
 
-    end subroutine psi_eigen_fortran
+end module filter_interface
 
     subroutine energi_eigen_fortran(dx, vpot, psi, n, energy_out)
         integer, intent(in) :: n
