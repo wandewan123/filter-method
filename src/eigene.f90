@@ -1,4 +1,4 @@
-module eigene
+module eigene_mod
     use matrix, only: matrix2, matrix4, matrix6
     use utils,  only: trapz
     implicit none
@@ -32,6 +32,6 @@ subroutine eigene(dx, vpot, psi, n, stencil, energy_out)
 
     deallocate(H_psi, psi_Hpsi)
 
-end subroutine eigene
+end subroutine eigene_mod
 
 end module eigene
