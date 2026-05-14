@@ -3,6 +3,15 @@ module solver_module
 contains
 
     subroutine tridag(a, b, c, r, n, u)
+
+    !+──────────────────────────────────────────────────────────────────────────+
+    !| SUBROUTINE : TRIDAG                                                       |
+    !| TUJUAN     : DIGUNAKAN UNTUK MENYELESAIKAN SISTEM MATRIKS BERBENTUK       |
+    !|              KOEFISIEN TRIDIAGONAL                                        |
+    !| INPUT      : a (low-diag), b (diag), c(up-diag), r(RHS), n(grid)
+    !| OUPUTS     : u(solution)
+    !+──────────────────────────────────────────────────────────────────────────+
+
         integer, intent(in)   :: n
         real(8), intent(in)   :: a(n), b(n), c(n), r(n)
         real(8), intent(out)  :: u(n)
@@ -10,8 +19,9 @@ contains
         real(8) :: bet
         integer :: j
 
-        b_temp = b
-        bet = b_temp(1)
+        b_temp  = b
+        bet     = b_temp(1)
+        
         if (bet == 0.0d0) return
 
         u(1) = r(1) / bet
@@ -26,7 +36,16 @@ contains
         end do
     end subroutine tridag
 
-    subroutine psi_eigen_fortran(dx, vpot, psi_in, energy, n, psi_out)
+    subroutine psi_eigen_2(dx, vpot, psi_in, energy, n, psi_out)
+
+    !+──────────────────────────────────────────────────────────────────────────+
+    !| SUBROUTINE : PSI_EIGEN_2                                                       |
+    !| TUJUAN     : DIGUNAKAN UNTUK MENYELESAIKAN SISTEM MATRIKS BERBENTUK       |
+    !|              KOEFISIEN TRIDIAGONAL                                        |
+    !| INPUT      : a (low-diag), b (diag), c(up-diag), r(RHS), n(grid)
+    !| OUPUTS     : u(solution)
+    !+──────────────────────────────────────────────────────────────────────────+
+
         ! Mendefinisikan tipe data dan arah variabel (intent)
         integer, intent(in)  :: n
         real(8), intent(in)  :: dx, energy, vpot(n), psi_in(n)
