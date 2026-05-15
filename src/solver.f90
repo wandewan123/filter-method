@@ -3,7 +3,6 @@ module solver
     private
     public :: tridag, pentadag, septadag
 
-    ! Konstanta toleransi untuk menghindari pembagian dengan nol
     real(8), parameter :: EPS = 1.0d-20
 
 contains
