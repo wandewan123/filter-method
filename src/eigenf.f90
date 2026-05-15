@@ -12,8 +12,13 @@ subroutine eigenf2(dx, vpot, psi, n, energy, phi)
 
     real(8)              :: dx2
     real(8), allocatable :: alfa(:), beta(:)
+    integer              :: alloc_stat
 
-    allocate(alfa(n), beta(n))
+    allocate(alfa(n), beta(n), stat = alloc_stat)
+    if (alloc_stat /= 0) then
+      print *, "ERROR: Gagal alokasi memori di eigenf4!"
+      return
+    end if
 
     dx2  = dx * dx
     alfa = -0.5d0 / dx2
@@ -35,7 +40,7 @@ subroutine eigenf4(dx, vpot, psi, n, energy, phi)
     real(8)              :: dx2
     real(8), allocatable :: a(:), b(:), c(:), d(:), e(:)
 
-    allocate(a(n), b(n), c(n), d(n), e(n))
+    allocate(a(n), b(n), c(n), d(n), e(n), stat = alloc_stat)
 
     dx2 = dx * dx
 
