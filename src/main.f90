@@ -38,15 +38,27 @@ contains
     
             select case(stencil)
             case(3)
-                call eigenf2(dx, vpot, psi_curr, n, E_curr, phi)
+                call eigenf2(dx, vpot, psi_curr, n, E_curr, phi, status)
+                if (status /= 0) then
+                    deallocate(psi_curr, phi, Hphi, r)
+                    return
+                end if
                 call eigene(dx, vpot, phi, n, stencil, E_next)
                 call matrix2(dx, vpot, phi, n, Hphi)
             case(5)
-                call eigenf4(dx, vpot, psi_curr, n, E_curr, phi)
+                call eigenf4(dx, vpot, psi_curr, n, E_curr, phi, status)
+                if (status /= 0) then
+                    deallocate(psi_curr, phi, Hphi, r)
+                    return
+                end if
                 call eigene(dx, vpot, phi, n, stencil, E_next)
                 call matrix4(dx, vpot, phi, n, Hphi)
             case(7)
-                call eigenf6(dx, vpot, psi_curr, n, E_curr, phi)
+                call eigenf6(dx, vpot, psi_curr, n, E_curr, phi, status)
+                if (status /= 0) then
+                    deallocate(psi_curr, phi, Hphi, r)
+                    return
+                end if
                 call eigene(dx, vpot, phi, n, stencil, E_next)
                 call matrix6(dx, vpot, phi, n, Hphi) 
             case default
@@ -56,7 +68,7 @@ contains
                 return
             end select
     
-            r = Hphi - (E_next * phi)
+            r        = Hphi - (E_next * phi)
             residual = sqrt(sum(r ** 2) * dx) / max(abs(E_next), 1.0d-12)
             E_curr   = ((1.0d0 - xi) * E_next) + (xi * E_curr)
             psi_curr = phi
