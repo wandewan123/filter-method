@@ -27,7 +27,6 @@ subroutine eigenf2(dx, vpot, psi, n, energy, phi)
 
 end subroutine eigenf2
 
-
 subroutine eigenf4(dx, vpot, psi, n, energy, phi)
     integer, intent(in)  :: n
     real(8), intent(in)  :: dx, energy, vpot(n), psi(n)
