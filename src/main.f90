@@ -13,7 +13,7 @@ contains
         integer, intent(in)    :: stencil, maxiter
         
         real(8), intent(out)   :: energy_final, phi_final(size(x))
-        integer, intent(out)    :: status
+        integer, intent(out)   :: status
         
         integer                 :: n, iterasi, alloc_stat
         real(8)                 :: E_curr, E_next, dx, residual
