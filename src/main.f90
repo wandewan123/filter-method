@@ -21,9 +21,7 @@ contains
     
         n  = size(x)
         dx = x(2) - x(1)
-    
         allocate(psi_curr(n), phi(n), Hphi(n), r(n), stat = alloc_stat)
-
         if (alloc_stat /= 0) then
             print *, "ERROR: Gagal mengalokasikan memori array!"
             status = -1
@@ -43,17 +41,14 @@ contains
                 call eigenf2(dx, vpot, psi_curr, n, E_curr, phi)
                 call eigene(dx, vpot, phi, n, stencil, E_next)
                 call matrix2(dx, vpot, phi, n, Hphi)
-    
             case(5)
                 call eigenf4(dx, vpot, psi_curr, n, E_curr, phi)
                 call eigene(dx, vpot, phi, n, stencil, E_next)
                 call matrix4(dx, vpot, phi, n, Hphi)
-    
             case(7)
                 call eigenf6(dx, vpot, psi_curr, n, E_curr, phi)
                 call eigene(dx, vpot, phi, n, stencil, E_next)
-                call matrix6(dx, vpot, phi, n, Hphi)
-                
+                call matrix6(dx, vpot, phi, n, Hphi) 
             case default
                 print *, "Error: Stencil harus bernilai 3, 5, atau 7."
                 status = -2
@@ -63,7 +58,6 @@ contains
     
             r = Hphi - (E_next * phi)
             residual = sqrt(sum(r ** 2) * dx) / max(abs(E_next), 1.0d-12)
-    
             E_curr   = ((1.0d0 - xi) * E_next) + (xi * E_curr)
             psi_curr = phi
     
@@ -71,13 +65,11 @@ contains
     
         energy_final = E_next
         phi_final    = phi
-
         if (residual <= tol) then
             status = 0
         else
             status = 1
         end if
-    
         deallocate(psi_curr, phi, Hphi, r)
     
     end subroutine solver_filter
