@@ -25,15 +25,11 @@ The approach is particularly attractive for:
 # Mathematical Background
 
 For a one-dimensional system, the Hamiltonian operator is written as
-
 $\hat{H} = -\frac{\hbar^{2}}{2m}\frac{\partial^{2}}{\partial x^{2}} + V(x)$
-
-Using finite-difference discretization, the problem becomes a tridiagonal system.
-
-The filtering iteration employed in this work is based on repeatedly solving
-
+By applying a finite-difference discretization scheme, the continuous differential operator is mapped onto a discrete grid.
+Depending on the chosen stencil size (3, 5, or 7 points), the kinetic energy term transforms the problem into a banded matrix system (tridiagonal, pentadiagonal, or heptadiagonal, respectively).
+Instead of deploying computationally expensive global diagonalization algorithms, the filtering iteration in this framework isolates the target eigenstate by repeatedly solving the shifted linear system:
 $\left(\hat{H} - E_{n}^{k}\right)\phi_{n}^{k+1}(x) = \phi_{n}^{k}(x)$
-
 followed by normalization and energy updates until convergence is achieved.
 
 ---
