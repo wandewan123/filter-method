@@ -100,13 +100,27 @@ Simply click the badge above, make a copy to your drive, and run the cells!
 
 ---
 
-# References
+# 📚 References & Citation
 
-This project is based on research involving iterative filtering methods for quantum eigenvalue problems.
-If you use this library in academic work, please cite the corresponding research publication.
+This library is based on quantum eigenvalue problem research. If you use this software in an academic context, please cite the corresponding paper:
 
-📄[Filter method without boundary-value condition for simultaneous calculation of eigenfunction and eigenvalue of a stationary Schrödinger equation on a grid](https://doi.org/10.1103/PhysRevE.96.033302)
+| Research Paper | Digital Object Identifier |
+| :--- | :--- |
+| **Filter method without boundary-value condition...** <br> *Phys. Rev. E (2017)* | [![DOI:10.1103/PhysRevE.96.033302](https://img.shields.io/badge/DOI-10.1103%2FPhysRevE.96.033302-blue.svg)](https://doi.org/10.1103/PhysRevE.96.033302) |
 
+### BibTeX
+```bibtex
+@article{Ikeda2017,
+  title={Filter method without boundary-value condition for simultaneous calculation of eigenfunction and eigenvalue of a stationary Schr{\"o}dinger equation on a grid},
+  author={Ikeda, Tatsuhiko N},
+  journal={Physical Review E},
+  volume={96},
+  number={3},
+  pages={033302},
+  year={2017},
+  publisher={APS}
+}
+```
 ---
 
 # License
