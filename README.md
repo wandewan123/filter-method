@@ -36,7 +36,7 @@ Instead of deploying computationally expensive global diagonalization algorithms
 
 $\left(\hat{H} - E_{n}^{k}\right)\phi_{n}^{k+1}(x) = \phi_{n}^{k}(x)$
 
-followed by normalization and energy updates until convergence is achieved.
+This step is followed by an iterative wavefunction normalization, an energy expectation value evaluation, and a relaxation mixing update until the specified convergence tolerance is achieved.
 
 ---
 
