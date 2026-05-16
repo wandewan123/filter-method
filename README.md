@@ -64,9 +64,9 @@ Since the library contains optimized Fortran compiled cores, it currently requir
 First, navigate to your working directory, clone the repository, and install the required build tools:
 ```bash
 %cd /content
-!rm -rf FILTER_METHOD
-!git clone [https://github.com/wandewan123/FILTER_METHOD.git](https://github.com/wandewan123/FILTER_METHOD.git)
-%cd FILTER_METHOD
+!rm -rf filter-method
+!git clone [https://github.com/wandewan123/filter-method.git](https://github.com/wandewan123/filter-method.git)
+%cd filter-method
 !pip install meson ninja numpy
 ```
 ### 2. Compiling the Fortran Core
@@ -91,6 +91,8 @@ from dvipy import solve_full
 # Example usage (adjust parameters based on your physical system)
 # energy, wavefunction, status = solve_full(x, vpot, guessE, ...)
 ```
+Disini kami menyediakan contoh file ipynb untuk penggunaan di colab
+[How_to_use.ipynb](https://colab.research.google.com/drive/1sRqObdd0HV1WzeZinW3yt4oJXPpSeLEO?usp=sharing)
 
 ---
 
