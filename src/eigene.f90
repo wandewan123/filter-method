@@ -10,11 +10,11 @@ subroutine eigene(dx, vpot, psi, n, stencil, energy_out)
     real(8), intent(in)  :: dx, vpot(n), psi(n)
     real(8), intent(out) :: energy_out
 
-    real(8), allocatable :: H_psi(:), psi_Hpsi(:)
+    real(8), allocatable :: Hpsi(:), psi_Hpsi(:)
 
-    allocate(H_psi(n), psi_Hpsi(n))
+    allocate(Hpsi(n), psi_Hpsi(n))
+    
 
-    ! Pilih operator
     select case(stencil)
     case(3)
         call matrix2(dx, vpot, psi, n, H_psi)
