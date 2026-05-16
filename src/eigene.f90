@@ -5,13 +5,14 @@ module eigene_mod
 
 contains
 
-subroutine eigene(dx, vpot, psi, n, stencil, energy_out)
+subroutine eigene(dx, vpot, psi, n, stencil, energy_out, status)
     integer, intent(in)  :: n, stencil
     real(8), intent(in)  :: dx, vpot(n), psi(n)
     real(8), intent(out) :: energy_out
+    integer, intent(out) :: status
 
     real(8), allocatable :: Hpsi(:), psi_Hpsi(:)
-    integer              :: alloc_stat, solver_status
+    integer              :: alloc_stat
 
     status = 0
 
