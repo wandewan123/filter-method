@@ -1,7 +1,5 @@
 # FILTER METHOD 1D
 
-A fast Fortran-based iterative eigenvalue solver for one-dimensional Schrödinger equations using the filtering method.
-
 This project provides a lightweight scientific-computing framework for solving quantum eigenvalue problems with a hybrid Fortran–Python architecture. The numerical core is written in modern Fortran for performance, while Python provides a simple and flexible interface for experimentation and visualization.
 
 ---
@@ -53,6 +51,24 @@ The implemented procedure consists of:
 7. Convergence check
 
 The matrix systems are solved efficiently using the Thomas algorithm implemented directly in Fortran.
+
+---
+
+# How to Use
+
+Since the library contains optimized Fortran compiled cores, it currently requires a manual compilation step. You can easily clone, compile, and run the solver in a **Google Colab** environment or any Linux-based system with the following steps:
+
+### 1. Environment Setup & Cloning
+First, navigate to your working directory, clone the repository, and install the required build tools:
+
+```bash
+%cd /content
+!rm -rf FILTER_METHOD
+!git clone [https://github.com/wandewan123/FILTER_METHOD.git](https://github.com/wandewan123/FILTER_METHOD.git)
+%cd FILTER_METHOD
+!pip install meson ninja numpy
+```
+
 
 ---
 
