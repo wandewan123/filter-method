@@ -11,14 +11,14 @@ subroutine eigene(dx, vpot, psi, n, stencil, energy_out, status)
     real(8), intent(out) :: energy_out
     integer, intent(out) :: status
 
-    real(8), allocatable :: Hpsi(:), psi_Hpsi(:)
+    real(8), allocatable :: H_psi(:), psi_Hpsi(:)
     integer              :: alloc_stat
 
     status = 0
 
-    allocate(Hpsi(n), psi_Hpsi(n), stat = alloc_stat)
+    allocate(H_psi(n), psi_Hpsi(n), stat = alloc_stat)
     if (alloc_stat /= 0) then
-      print *, "ERROR: Gagal alokasi memori di eigenf2!"
+      print *, "ERROR: Gagal alokasi memori!"
       status = -1
       return
     end if
@@ -33,7 +33,8 @@ subroutine eigene(dx, vpot, psi, n, stencil, energy_out, status)
     case default
         print *, "Stencil tidak valid!"
         status = -2
-        deallocate (Hpsi, psi_Hpsi)
+        deallocate (H_psi, psi_Hpsi)
+        return
     end select
 
     psi_Hpsi    = psi * H_psi
