@@ -4,9 +4,6 @@ module matrix
 
 contains
 
-! ==========================================================================
-! MATRIX2 (Orde-2, 3-point stencil)
-! ==========================================================================
 subroutine matrix2(dx, vpot, phi, n, Hphi, status)
     integer, intent(in)  :: n
     real(8), intent(in)  :: dx, vpot(n), phi(n)
@@ -35,9 +32,6 @@ subroutine matrix2(dx, vpot, phi, n, Hphi, status)
 
 end subroutine matrix2
 
-! ==========================================================================
-! MATRIX4 (Orde-4, 5-point stencil)
-! ==========================================================================
 subroutine matrix4(dx, vpot, phi, n, Hphi, status)
     integer, intent(in)  :: n
     real(8), intent(in)  :: dx, vpot(n), phi(n)
@@ -70,9 +64,6 @@ subroutine matrix4(dx, vpot, phi, n, Hphi, status)
 
 end subroutine matrix4
 
-! ==========================================================================
-! MATRIX6 (Orde-6, 7-point stencil)
-! ==========================================================================
 subroutine matrix6(dx, vpot, phi, n, Hphi, status)
     integer, intent(in)  :: n
     real(8), intent(in)  :: dx, vpot(n), phi(n)
