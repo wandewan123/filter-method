@@ -1,6 +1,6 @@
 module eigenf
   use solver, only   : tridag, pentadag, septadag
-  use utils, only    : normalize
+  use utils, only    : trapz
   implicit none
 
 contains
@@ -34,7 +34,7 @@ subroutine eigenf2(dx, vpot, psi, n, energy, phi)
         return
     end if
 
-    phi = normalize(phi, dx)
+    phi = trapz(phi, dx)
 
     deallocate(alfa, beta)
 end subroutine eigenf2
