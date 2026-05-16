@@ -71,7 +71,7 @@ subroutine eigenf4(dx, vpot, psi, n, energy, phi, status)
         return
     end if
 
-    phi = normalize(phi, dx)
+    phi = trapz(phi, dx)
 
     deallocate(a, b, c, d, e)
 end subroutine eigenf4
@@ -106,7 +106,7 @@ subroutine eigenf6(dx, vpot, psi, n, energy, phi, status)
       print *, "Error: Solver gagal di eigenf2 dengan kode: ", solver_status
     end if
 
-    phi = normalize(phi, dx)
+    phi = trapz(phi, dx)
 
     deallocate(a3, a2, a1, d0, c1, c2, c3)
 end subroutine eigenf6
