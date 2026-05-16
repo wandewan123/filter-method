@@ -7,15 +7,21 @@ contains
 ! ==========================================================================
 ! MATRIX2 (Orde-2, 3-point stencil)
 ! ==========================================================================
-subroutine matrix2(dx, vpot, phi, n, Hphi)
+subroutine matrix2(dx, vpot, phi, n, Hphi, status)
     integer, intent(in)  :: n
     real(8), intent(in)  :: dx, vpot(n), phi(n)
     real(8), intent(out) :: Hphi(n)
+    integer, intent(out) :: status
 
     real(8) :: dx2, invdx2, alfa
     integer :: i
 
-    if (n < 3) error stop "n terlalu kecil untuk stencil 3"
+    status = 0
+    if (n < 3) then
+        print *, "ERROR [matrix2]: n terlalu kecil untuk stencil 3"
+        status = -4 
+        return
+    end if
 
     dx2    = dx*dx
     invdx2 = 1.0d0 / dx2
@@ -32,15 +38,22 @@ end subroutine matrix2
 ! ==========================================================================
 ! MATRIX4 (Orde-4, 5-point stencil)
 ! ==========================================================================
-subroutine matrix4(dx, vpot, phi, n, Hphi)
+subroutine matrix4(dx, vpot, phi, n, Hphi, status)
     integer, intent(in)  :: n
     real(8), intent(in)  :: dx, vpot(n), phi(n)
     real(8), intent(out) :: Hphi(n)
+    integer, intent(out) :: status
+    
 
     real(8) :: dx2, c0, c1, c2
     integer :: i
 
-    if (n < 5) error stop "n terlalu kecil untuk stencil 5"
+    status = 0
+    if (n < 5) then
+        print *, "ERROR [matrix4]: n terlalu kecil untuk stencil 5"
+        status = -4
+        return
+    end if
 
     dx2 = dx*dx
     c2 =  1.0d0 / (24.0d0 * dx2)
@@ -60,15 +73,21 @@ end subroutine matrix4
 ! ==========================================================================
 ! MATRIX6 (Orde-6, 7-point stencil)
 ! ==========================================================================
-subroutine matrix6(dx, vpot, phi, n, Hphi)
+subroutine matrix6(dx, vpot, phi, n, Hphi, status)
     integer, intent(in)  :: n
     real(8), intent(in)  :: dx, vpot(n), phi(n)
     real(8), intent(out) :: Hphi(n)
+    integer, intent(out) :: status
 
     real(8) :: dx2, c0, c1, c2, c3
     integer :: i
 
-    if (n < 7) error stop "n terlalu kecil untuk stencil 7"
+    status = 0
+    if (n < 7) then
+        print *, "ERROR [matrix6]: n terlalu kecil untuk stencil 7"
+        status = -4
+        return
+    end if
 
     dx2 = dx*dx
     c3 = -1.0d0 / (180.0d0 * dx2)
