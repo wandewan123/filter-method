@@ -15,9 +15,9 @@ contains
         real(8), intent(out)   :: energy_final, phi_final(size(x))
         integer, intent(out)   :: status
         
-        integer                 :: n, iterasi, alloc_stat
-        real(8)                 :: E_curr, E_next, dx, residual
-        real(8), allocatable    :: psi_curr(:), phi(:), Hphi(:), r(:)
+        integer                :: n, iterasi, alloc_stat
+        real(8)                :: E_curr, E_next, dx, residual
+        real(8), allocatable   :: psi_curr(:), phi(:), Hphi(:), r(:)
     
         n  = size(x)
         dx = x(2) - x(1)
@@ -40,27 +40,51 @@ contains
             case(3)
                 call eigenf2(dx, vpot, psi_curr, n, E_curr, phi, status)
                 if (status /= 0) then
-                    deallocate(psi_curr, phi, Hphi, r)
-                    return
+                    deallocate(psi_curr, phi, Hphi, r); return
                 end if
-                call eigene(dx, vpot, phi, n, stencil, E_next)
-                call matrix2(dx, vpot, phi, n, Hphi)
+                
+                call eigene(dx, vpot, phi, n, stencil, E_next, status)
+                if (status /= 0) then
+                    deallocate(psi_curr, phi, Hphi, r); return
+                end if
+                
+                call matrix2(dx, vpot, phi, n, Hphi, status)
+                if (status /= 0) then
+                    deallocate(psi_curr, phi, Hphi, r); return
+                end if
+
             case(5)
                 call eigenf4(dx, vpot, psi_curr, n, E_curr, phi, status)
                 if (status /= 0) then
-                    deallocate(psi_curr, phi, Hphi, r)
-                    return
+                    deallocate(psi_curr, phi, Hphi, r); return
                 end if
-                call eigene(dx, vpot, phi, n, stencil, E_next)
-                call matrix4(dx, vpot, phi, n, Hphi)
+                
+                call eigene(dx, vpot, phi, n, stencil, E_next, status)
+                if (status /= 0) then
+                    deallocate(psi_curr, phi, Hphi, r); return
+                end if
+                
+                call matrix4(dx, vpot, phi, n, Hphi, status)
+                if (status /= 0) then
+                    deallocate(psi_curr, phi, Hphi, r); return
+                end if
+
             case(7)
                 call eigenf6(dx, vpot, psi_curr, n, E_curr, phi, status)
                 if (status /= 0) then
-                    deallocate(psi_curr, phi, Hphi, r)
-                    return
+                    deallocate(psi_curr, phi, Hphi, r); return
                 end if
-                call eigene(dx, vpot, phi, n, stencil, E_next)
-                call matrix6(dx, vpot, phi, n, Hphi) 
+                
+                call eigene(dx, vpot, phi, n, stencil, E_next, status)
+                if (status /= 0) then
+                    deallocate(psi_curr, phi, Hphi, r); return
+                end if
+                
+                call matrix6(dx, vpot, phi, n, Hphi, status) 
+                if (status /= 0) then
+                    deallocate(psi_curr, phi, Hphi, r); return
+                end if
+
             case default
                 print *, "Error: Stencil harus bernilai 3, 5, atau 7."
                 status = -2
@@ -69,7 +93,7 @@ contains
             end select
     
             r        = Hphi - (E_next * phi)
-            residual = sqrt(sum(r ** 2) * dx) / max(abs(E_next), 1.0d-12)
+            residual = sqrt(sum(r ** 2)) / max(abs(E_next), 1.0d-12) 
             E_curr   = ((1.0d0 - xi) * E_next) + (xi * E_curr)
             psi_curr = phi
     
@@ -82,8 +106,8 @@ contains
         else
             status = 1
         end if
+        
         deallocate(psi_curr, phi, Hphi, r)
-    
     end subroutine solver_filter
 
 end module main_filter
