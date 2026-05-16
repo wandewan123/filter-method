@@ -54,13 +54,12 @@ The matrix systems are solved efficiently using the Thomas algorithm implemented
 
 ---
 
-# How to Use
+# How to Use (will be updated)
 
 Since the library contains optimized Fortran compiled cores, it currently requires a manual compilation step. You can easily clone, compile, and run the solver in a **Google Colab** environment or any Linux-based system with the following steps:
 
 ### 1. Environment Setup & Cloning
 First, navigate to your working directory, clone the repository, and install the required build tools:
-
 ```bash
 %cd /content
 !rm -rf FILTER_METHOD
@@ -68,7 +67,28 @@ First, navigate to your working directory, clone the repository, and install the
 %cd FILTER_METHOD
 !pip install meson ninja numpy
 ```
+### 2. Compiling the Fortran Core
+Compile the high-performance Fortran source files into a Python-binded shared library (.so) using ```f2py```
+```bash
+!f2py -c -m solver_lib \
+    src/utils.f90 \
+    src/solver.f90 \
+    src/matrix.f90 \
+    src/eigenf.f90 \
+    src/eigene.f90 \
+    src/main.f90
 
+# Move the compiled library into the python interface directory
+!mv solver_lib*.so dvipy/
+```
+### 3. Running the Solver in Python
+Once the compilation is finished, you can import and use the high-level Python interface ```solve_full``` directly in your scripts:
+```bash
+from dvipy import solve_full
+
+# Example usage (adjust parameters based on your physical system)
+# energy, wavefunction, status = solve_full(x, vpot, guessE, ...)
+```
 
 ---
 
