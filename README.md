@@ -38,12 +38,6 @@ $\left(\hat{H} - E_{n}^{k}\right)\phi_{n}^{k+1}(x) = \phi_{n}^{k}(x)$
 
 followed by normalization and energy updates until convergence is achieved.
 
-The eigenvalue is computed from the expectation value
-
-:contentReference[oaicite:3]{index=3}
-
-with iterative mixing applied for numerical stability.
-
 ---
 
 # Numerical Algorithm
@@ -51,14 +45,14 @@ with iterative mixing applied for numerical stability.
 The implemented procedure consists of:
 
 1. Initial wavefunction guess
-2. Construction of the tridiagonal Hamiltonian
+2. Construction of the matrix Hamiltonian
 3. Iterative filtering step
 4. Wavefunction normalization
 5. Energy expectation evaluation
 6. Energy mixing update
 7. Convergence check
 
-The tridiagonal systems are solved efficiently using the Thomas algorithm implemented directly in Fortran.
+The matrix systems are solved efficiently using the Thomas algorithm implemented directly in Fortran.
 
 ---
 
