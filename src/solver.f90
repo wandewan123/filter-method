@@ -127,6 +127,7 @@ contains
         integer, intent(in)     :: n
         real(8), intent(in)     :: a3(n), a2(n), a1(n), d0(n), c1(n), c2(n), c3(n), r(n)
         real(8), intent(out)    :: u(n)
+        integer, intent(out)    :: status
         
         real(8), allocatable    :: d0_m(:), c1_m(:), c2_m(:), c3_m(:), r_m(:)
         real(8), allocatable    :: a1_m(:), a2_m(:), a3_m(:)
