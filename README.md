@@ -91,8 +91,12 @@ from dvipy import solve_full
 # Example usage (adjust parameters based on your physical system)
 # energy, wavefunction, status = solve_full(x, vpot, guessE, ...)
 ```
-Disini kami menyediakan contoh file ipynb untuk penggunaan di colab
-[How_to_use.ipynb](https://colab.research.google.com/drive/1sRqObdd0HV1WzeZinW3yt4oJXPpSeLEO?usp=sharing)
+
+To help you get started quickly without setting up anything locally, we provide an interactive Google Colab notebook containing complete, runnable examples of the solver:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1sRqObdd0HV1WzeZinW3yt4oJXPpSeLEO?usp=sharing)
+
+Simply click the badge above, make a copy to your drive, and run the cells!
 
 ---
 
@@ -101,7 +105,7 @@ Disini kami menyediakan contoh file ipynb untuk penggunaan di colab
 This project is based on research involving iterative filtering methods for quantum eigenvalue problems.
 If you use this library in academic work, please cite the corresponding research publication.
 
-[📄 Filter method without boundary-value condition for simultaneous calculation of eigenfunction and eigenvalue of a stationary Schrödinger equation on a grid](https://doi.org/10.1103/PhysRevE.96.033302)
+📄[Filter method without boundary-value condition for simultaneous calculation of eigenfunction and eigenvalue of a stationary Schrödinger equation on a grid](https://doi.org/10.1103/PhysRevE.96.033302)
 
 ---
 
