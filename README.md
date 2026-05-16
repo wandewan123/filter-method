@@ -1,4 +1,4 @@
-# FILTER METHOD
+# FILTER METHOD 1D
 
 A fast Fortran-based iterative eigenvalue solver for one-dimensional Schrödinger equations using the filtering method.
 
