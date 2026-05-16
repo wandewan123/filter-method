@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the original research paper and this repository."
+authors:
+  - family-names: "Wandewan"
+title: "FILTER_METHOD_1D"
+version: "1.0.0"
+date-released: 2026-05-16
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Nama Penulis Utama Paper"
+  title: "Filter method without boundary-value condition for simultaneous calculation of eigenfunction and eigenvalue of a stationary Schrödinger equation on a grid"
+  journal: "Physical Review E"
+  volume: 96
+  issue: 3
+  pages: 033302
+  year: 2017
+  doi: "10.1103/PhysRevE.96.033302"
