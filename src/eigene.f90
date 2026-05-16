@@ -25,11 +25,23 @@ subroutine eigene(dx, vpot, psi, n, stencil, energy_out, status)
     
     select case(stencil)
     case(3)
-        call matrix2(dx, vpot, psi, n, H_psi)
+        call matrix2(dx, vpot, psi, n, H_psi, status)
+        if (status /= 0) then
+            deallocate(H_psi, psi_Hpsi)
+            return
+        end if
     case(5)
-        call matrix4(dx, vpot, psi, n, H_psi)
+        call matrix4(dx, vpot, psi, n, H_psi, status)
+        if (status /= 0) then
+            deallocate(H_psi, psi_Hpsi)
+            return
+        end if
     case(7)
-        call matrix6(dx, vpot, psi, n, H_psi)
+        call matrix6(dx, vpot, psi, n, H_psi, status)
+        if (status /= 0) then
+            deallocate(H_psi, psi_Hpsi)
+            return
+        end if
     case default
         print *, "Stencil tidak valid!"
         status = -2
