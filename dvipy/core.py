@@ -71,4 +71,4 @@ def solve_full(x, vpot, initial_e, psi0, stencil=3, xi=0.5, tol=1e-7, maxiter=10
         else:
             raise RuntimeError(f"Fortran Error: Kode status {status}")
             
-    return energy_final, phi_final
+    return energy_final, phi_final, status
