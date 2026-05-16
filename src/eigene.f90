@@ -11,10 +11,17 @@ subroutine eigene(dx, vpot, psi, n, stencil, energy_out)
     real(8), intent(out) :: energy_out
 
     real(8), allocatable :: Hpsi(:), psi_Hpsi(:)
+    integer              :: alloc_stat, solver_status
 
-    allocate(Hpsi(n), psi_Hpsi(n))
+    status = 0
+
+    allocate(Hpsi(n), psi_Hpsi(n), stat = alloc_stat)
+    if (alloc_stat /= 0) then
+      print *, "ERROR: Gagal alokasi memori di eigenf2!"
+      status = -1
+      return
+    end if
     
-
     select case(stencil)
     case(3)
         call matrix2(dx, vpot, psi, n, H_psi)
@@ -23,15 +30,15 @@ subroutine eigene(dx, vpot, psi, n, stencil, energy_out)
     case(7)
         call matrix6(dx, vpot, psi, n, H_psi)
     case default
-        error stop "Stencil tidak valid"
+        print *, "Stencil tidak valid!"
+        status = -2
+        deallocate (Hpsi, psi_Hpsi)
     end select
 
-    psi_Hpsi = psi * H_psi
-
-    energy_out = trapz(psi_Hpsi, dx)
+    psi_Hpsi    = psi * H_psi
+    energy_out  = trapz(psi_Hpsi, dx)
 
     deallocate(H_psi, psi_Hpsi)
-
 end subroutine eigene
 
 end module eigene_mod
