@@ -1,6 +1,9 @@
 # FILTER METHOD 1D
 
 This project provides a lightweight scientific-computing framework for solving quantum eigenvalue problems with a hybrid Fortran–Python architecture. The numerical core is written in modern Fortran for performance, while Python provides a simple and flexible interface for experimentation and visualization.
+<p align="center">
+  <img src="image/IWIWIWIW.png" alt="Wavefunction Eigenstate Visualization" width="600">
+</p>
 
 ---
 
